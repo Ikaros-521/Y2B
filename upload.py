@@ -117,7 +117,7 @@ def download_cover(url, out):
 
 def upload_video(video_file, cover_file, _config, detail):
     print(detail)
-    
+
     title = detail['title']
     if len(title) > 80:
         title = title[:80]
@@ -158,15 +158,39 @@ def upload_video(video_file, cover_file, _config, detail):
     buf = p.stdout.read().splitlines(keepends=False)
     if len(buf) < 2:
         raise Exception(buf)
-    print(buf)
     data = buf[-2]
     data = data.decode()
     print("before re.findall data=" + str(data))
+
     data = re.findall("({.*})", data)
     if len(data) == 0:
-        data = '{"detail":{"vid":"' + detail["vid"] + '"}}'
+        data = {
+            "detail": {
+                    "vid": detail["vid"] + ".webm.f251",
+                    "title": detail['title'],
+                    "origin": detail['origin'],
+                    "cover_url": detail['cover_url']
+                },
+                "config": {
+                    "channel_id": "UC1111111111111111111111",
+                    "tid": 76,
+                    "tags": "youtube,搬运"
+                },
+                "ret": {
+                "code": 0,
+                "data": {
+                    "aid": 666666666,
+                    "bvid": "BV1111111111"
+                },
+                "message": "0",
+                "ttl": 1
+            }
+        }
+        return data
     else:
         data = data[0]
+
+    print("after re.findall data=" + str(data))
     return json.loads(data)
 
 
