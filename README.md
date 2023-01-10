@@ -8,7 +8,7 @@
 
 1. 下载 [biliup](https://github.com/ForgQi/biliup-rs/releases)，执行 `biliup login`,登录后会在本地生成一个`cookies.json`
 2. 打开 [gist](https://gist.github.com/)
-3. 新建一个文件 `config.json`,填下面的json,channel_id就是频道的 id,tid是b站的分区id，tags是最终投递到b站时，填的标签，支持多个频道。接下来就是把第一步生成的 cookies.json 内容，在新增一个 cookie.json (注意，没有 s ),把内容赋值粘贴到里面。
+3. 新建一个文件 `config.json`,填下面的json,channel_id就是频道的 id,tid是b站的分区id，tags是最终投递到b站时，填的标签，支持多个频道。接下来就是把第一步生成的 cookies.json 内容，在新增一个 cookie.json (注意，没有 s ),把内容赋值粘贴到里面。(ytb 获取channel_id的方法：打开ytb用户个人页，f12开启开发者工具，运行命令 `ytInitialData.metadata.channelMetadataRenderer.externalId`获取)
 
    ``` json
    [
