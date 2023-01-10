@@ -160,12 +160,11 @@ def upload_video(video_file, cover_file, _config, detail):
     data = buf[-2]
     data = data.decode()
     print("before re.findall data=" + str(data))
-    data = re.findall("({.*})", data)[0]
-    # 异常问题 一般为返回内容不对导致的解析失败，异常直接赋值成对应字符串
-    try:
-        data = re.findall("({.*})", data)[0]
-    except:
+    data = re.findall("({.*})", data)
+    if len(data) == 0:
         data = '{"detail":{"vid":"' + detail["vid"] + '"}}'
+    else:
+        data = data[0]
     return json.loads(data)
 
 
