@@ -156,6 +156,7 @@ def upload_video(video_file, cover_file, _config, detail):
     buf = p.stdout.read().splitlines(keepends=False)
     if len(buf) < 2:
         raise Exception(buf)
+    print(buf)
     data = buf[-2]
     data = data.decode()
     print("before re.findall data=" + str(data))
