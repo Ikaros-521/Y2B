@@ -157,7 +157,9 @@ def upload_video(video_file, cover_file, _config, detail):
         raise Exception(buf)
     data = buf[-2]
     data = data.decode()
+    print("before re.findall data=" + str(data))
     data = re.findall("({.*})", data)[0]
+    print("after re.findall data=" + str(data))
     return json.loads(data)
 
 
