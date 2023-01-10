@@ -199,8 +199,10 @@ def process_one(detail, config):
     download_cover(detail["cover_url"], detail["vid"] + ".jpg")
     ret = upload_video(detail["vid"] + ".webm",
                        detail["vid"] + ".jpg", config, detail)
-    os.remove(ret["detail"]["vid"] + ".webm")
-    os.remove(ret["detail"]["vid"] + ".jpg")
+    # os.remove(detail["vid"] + ".webm")
+    # os.remove(detail["vid"] + ".jpg")
+    os.system("rm -rf *.webm")
+    os.system("rm -rf *.jpg")
     return ret
 
 
