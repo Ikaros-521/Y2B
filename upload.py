@@ -150,6 +150,7 @@ def upload_video(video_file, cover_file, _config, detail):
         stdout=subprocess.PIPE,
     )
     p.wait()
+    print(p)
     if p.returncode != 0:
         raise Exception(p.stdout.read())
     buf = p.stdout.read().splitlines(keepends=False)
