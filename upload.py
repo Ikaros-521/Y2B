@@ -116,6 +116,8 @@ def download_cover(url, out):
 
 
 def upload_video(video_file, cover_file, _config, detail):
+    print(detail)
+    
     title = detail['title']
     if len(title) > 80:
         title = title[:80]
