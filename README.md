@@ -26,3 +26,11 @@
 7. 按顺序点进去 ![action-secret](imgs/action-secret.png)
 8. 把 gist id 和 token 填进去 ![git-toen](imgs/add-git-token.png) ![gist-id](imgs/add-gist-id.png)
 9. 手动触发一下 action ，看看有没有问题 ![run](imgs/run.png)
+
+## action执行间隔
+
+修改`Y2B/.github/workflows/upload.yaml`文件中，第5行左右，其中的cron配置，鼠标悬停可以看到当前配置的执行情况
+```
+schedule:
+    - cron: "0 * * * *"
+```
