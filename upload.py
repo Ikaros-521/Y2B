@@ -8,7 +8,7 @@ import xmltodict
 import yaml
 import argparse
 
-UPLOAD_SLEEP_SECOND = 60 * 2  # 2min
+UPLOAD_SLEEP_SECOND = 60 * 5  # 5min
 UPLOADED_VIDEO_FILE = "uploaded_video.json"
 CONFIG_FILE = "config.json"
 COOKIE_FILE = "cookie.json"
@@ -106,6 +106,7 @@ def get_all_video(_config):
 
 
 def download_video(url, out):
+    # https://github.com/yt-dlp/yt-dlp
     subprocess.run(["yt-dlp", url, "-o", out], check=True)
 
 
@@ -117,6 +118,22 @@ def download_cover(url, out):
 
 def upload_video(video_file, cover_file, _config, detail):
     print(detail)
+
+    # 模板json
+    temp = {
+        "code": 0,
+        "data": {
+            "aid": 666666666,
+            "bvid": "BV1111111111"
+        },
+        "message": "0",
+        "ttl": 1
+    }
+
+    # 追加个判断文件是否存在
+    if not os.path.exists(detail["vid"] + ".webm"):
+        print("file:" + detail["vid"] + ".webm" + " don't exist")
+        return temp
 
     title = detail['title']
     if len(title) > 80:
@@ -164,29 +181,7 @@ def upload_video(video_file, cover_file, _config, detail):
 
     data = re.findall("({.*})", data)
     if len(data) == 0:
-        data = {
-            "detail": {
-                    "vid": detail["vid"] + ".webm.f251",
-                    "title": detail['title'],
-                    "origin": detail['origin'],
-                    "cover_url": detail['cover_url']
-                },
-                "config": {
-                    "channel_id": "UC1111111111111111111111",
-                    "tid": 76,
-                    "tags": "youtube,搬运"
-                },
-                "ret": {
-                "code": 0,
-                "data": {
-                    "aid": 666666666,
-                    "bvid": "BV1111111111"
-                },
-                "message": "0",
-                "ttl": 1
-            }
-        }
-        return data
+        return temp
     else:
         data = data[0]
 
@@ -203,6 +198,7 @@ def process_one(detail, config):
     # os.remove(detail["vid"] + ".jpg")
     os.system("rm -rf *.webm")
     os.system("rm -rf *.jpg")
+    print("remove *.webm *.jpg")
     return ret
 
 
