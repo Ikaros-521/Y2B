@@ -107,7 +107,7 @@ def get_all_video(_config):
 
 def download_video(url, out):
     # https://github.com/yt-dlp/yt-dlp
-    subprocess.run(["yt-dlp", url, "-o", out], check=True)
+    subprocess.run(["yt-dlp", "-o", out, url], check=True)
 
 
 def download_cover(url, out):
