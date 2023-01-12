@@ -23,7 +23,7 @@ jobs:
       - name: install dependency
         run: |
           sudo apt-cache madison ffmpeg
-          sudo apt install ffmpeg=3.4.11 -y
+          sudo apt install ffmpeg=4.4.2 -y
           pip install -r requirements.txt
           wget https://github.com/ForgQi/biliup-rs/releases/download/$BILI_UP_VER/biliupR-$BILI_UP_VER-x86_64-linux.tar.xz
           tar xvf biliupR-$BILI_UP_VER-x86_64-linux.tar.xz
