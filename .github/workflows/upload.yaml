@@ -19,28 +19,9 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.8"
+          python-version: "3.9"
       - name: install dependency
         run: |
-          sudo cat>/etc/apt/ources.list<<EOF
-          deb http://mirrors.aliyun.com/ubuntu/ impish main restricted universe multiverse
-          deb-src http://mirrors.aliyun.com/ubuntu/ impish main restricted universe multiverse
-
-          deb http://mirrors.aliyun.com/ubuntu/ impish-security main restricted universe multiverse
-          deb-src http://mirrors.aliyun.com/ubuntu/ impish-security main restricted universe multiverse
-
-          deb http://mirrors.aliyun.com/ubuntu/ impish-updates main restricted universe multiverse
-          deb-src http://mirrors.aliyun.com/ubuntu/ impish-updates main restricted universe multiverse
-
-          deb http://mirrors.aliyun.com/ubuntu/ impish-proposed main restricted universe multiverse
-          deb-src http://mirrors.aliyun.com/ubuntu/ impish-proposed main restricted universe multiverse
-
-          deb http://mirrors.aliyun.com/ubuntu/ impish-backports main restricted universe multiverse
-          deb-src http://mirrors.aliyun.com/ubuntu/ impish-backports main restricted universe multiverse
-          EOF
-          sudo apt-get update
-          sudo apt-get upgrade
- 
           sudo apt install ffmpeg -y
           pip install -r requirements.txt
           wget https://github.com/ForgQi/biliup-rs/releases/download/$BILI_UP_VER/biliupR-$BILI_UP_VER-x86_64-linux.tar.xz
