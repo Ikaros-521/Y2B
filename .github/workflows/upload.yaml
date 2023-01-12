@@ -22,7 +22,7 @@ jobs:
           python-version: "3.8"
       - name: install dependency
         run: |
-          cat>/etc/apt/ources.list<<EOF
+          sudo cat>/etc/apt/ources.list<<EOF
           deb http://mirrors.aliyun.com/ubuntu/ impish main restricted universe multiverse
           deb-src http://mirrors.aliyun.com/ubuntu/ impish main restricted universe multiverse
 
