@@ -14,7 +14,7 @@ env:
 jobs:
   main:
     concurrency: download-and-upload
-    runs-on: ubuntu-latest
+    runs-on: centos8
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -22,8 +22,7 @@ jobs:
           python-version: "3.8"
       - name: install dependency
         run: |
-          sudo apt-cache madison ffmpeg
-          sudo apt install ffmpeg -y
+          sudo yum install ffmpeg -y
           pip install -r requirements.txt
           wget https://github.com/ForgQi/biliup-rs/releases/download/$BILI_UP_VER/biliupR-$BILI_UP_VER-x86_64-linux.tar.xz
           tar xvf biliupR-$BILI_UP_VER-x86_64-linux.tar.xz
