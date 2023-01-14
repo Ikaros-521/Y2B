@@ -2,7 +2,7 @@ name: download and upload video
 
 on:
   schedule:
-    - cron: "* */12 * * *"
+    - cron: "* */2 * * *"
   push:
     branches:
       - "master"
@@ -14,7 +14,7 @@ env:
 jobs:
   main:
     concurrency: download-and-upload
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -22,12 +22,14 @@ jobs:
           python-version: "3.8"
       - name: install dependency
         run: |
-          sudo apt install ffmpeg -y
+          sudo apt-get update
+          sudo apt-get install ffmpeg -y
           pip install -r requirements.txt
           wget https://github.com/ForgQi/biliup-rs/releases/download/$BILI_UP_VER/biliupR-$BILI_UP_VER-x86_64-linux.tar.xz
           tar xvf biliupR-$BILI_UP_VER-x86_64-linux.tar.xz
           sudo mv biliupR-$BILI_UP_VER-x86_64-linux/biliup /usr/local/bin/
           sudo chmod +x /usr/local/bin/biliup
+          pip install yt-dlp --upgrade
       - name: main logic
         env:
           GIST_ID: ${{secrets.GIST_ID}}
