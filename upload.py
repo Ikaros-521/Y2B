@@ -116,6 +116,7 @@ def get_all_video(_config):
 
 
 def download_video(url, out, format):
+    logging.debug("download_video:" + url + " out:" + out + " format:" + format)
     try:
         msg = subprocess.check_output(
             ["yt-dlp", url, "-f", format, "-o", out], stderr=subprocess.STDOUT)
