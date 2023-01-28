@@ -119,8 +119,8 @@ def download_video(url, out, format):
     logging.debug("download_video:" + url + " out:" + out + " format:" + format)
     try:
         msg = subprocess.check_output(
-            ["yt-dlp", url, "-o", out], stderr=subprocess.STDOUT)
-            # ["yt-dlp", url, "-f", format, "-o", out], stderr=subprocess.STDOUT)
+            # ["yt-dlp", url, "-o", out], stderr=subprocess.STDOUT)
+            ["yt-dlp", url, "-f", format, "-o", out], stderr=subprocess.STDOUT)
         logging.debug(msg[-512:])
         logging.info(f"视频下载完毕，大小：{get_file_size(out)} MB")
         return True
