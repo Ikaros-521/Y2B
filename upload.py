@@ -196,7 +196,7 @@ def upload_video(video_file, cover_file, _config, detail):
 
 def process_one(detail, config):
     logging.info(f'开始：{detail["vid"]}')
-    format = ["webm", "mp4", "flv"]
+    format = ["mp4", "webm", "flv"]
     v_ext = None
     for ext in format:
         if download_video(detail["origin"], detail["vid"] + f".{ext}", f"{ext}"):
