@@ -29,6 +29,9 @@
 8. 配置2个配置项 NAME分别配置`GIT_TOKEN`和`GIST_ID`。把前面的 gist id 和 token 填进去 ![git-toen](imgs/add-git-token.png) ![gist-id](imgs/add-gist-id.png)
 9. 手动触发一下 action ，看看有没有问题 ![action1](imgs/action1.png) ![action2](imgs/action2.png) ![run](imgs/run.png)
 
+## 手动跳过部分视频
+运行时可能会碰到会员视频、直播、404视频等，可以手动修改 gist的uploaded_video.json，配置视频id进去，就可以跳过了。重复标题视频第二次运行会自动跳过。
+
 ## action执行间隔
 
 修改`Y2B/.github/workflows/upload.yaml`文件中，第5行左右，其中的cron配置，鼠标悬停可以看到当前配置的执行情况
