@@ -148,7 +148,9 @@ def upload_video(video_file, cover_file, _config, detail):
         title = title[:80]
     yml = {
         # 更换线路 kodo qn
-        "line": "cos",
+        # ws（网宿） qn（七牛） bda2（百度）
+        # kodo（七牛）gcs（谷歌）bos（百度）
+        "line": "ws",
         "limit": 3,
         "streamers": {
             video_file: {
